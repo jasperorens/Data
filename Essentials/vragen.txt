@@ -1,0 +1,67 @@
+select naam
+from medewerkers
+   where mnr in
+               (select cursist
+                from inschrijvingen where cursus in
+                       (select cursus from uitvoeringen where docent = NULL));
+
+
+
+select * from uitvoeringen;
+
+
+de eerste is een opdracht, deze selecteerde geen regels
+maar er zijn echter 3 cursussen waarvan de docent niet gekend is (WIN, LIN, PR1)
+//////////////////////////////////////////////////
+
+
+Sorteer de namen van de medewerkers
+zonder rekening te houden met eventuele blanco’s.
+
+antwoord is dan:
+a
+
+select naam
+from medewerkers
+order by replace(naam, ‘ ‘ , ‘’);
+
+select naam
+from medewerkers
+order by replace(naam, ‘ ‘);            but why???
+/////////////////////////////////////////////////////////
+
+
+Maak een histogram met als maatstaf
+de lengte van de namen van de medewerkers.
+Zorg dat de kolom histogram 25 karakters breed is.
+NAAM LENGTE HISTOGRAM
+BRIERS 6 **
+DE KONING 9 *****
+
+a
+
+col histogram format a25;
+
+select naam, length(naam) as lengte,
+rpad(‘+’, length(naam), ‘+’) as histogram
+from medewerkers;
+
+select naam, length(naam) as lengte,
+lpad(‘+’, length(naam), ‘+’) as histogram
+from medewerkers;
+
+
+/////////////////////////////////////////////////////////////////
+
+
+
+
+Druk enkel de medewerkers af waarvan
+de naam uit 2 delen bestaat.
+
+Het eerste gedeelte wordt in kleine letters
+en tussen haakjes na het tweede gedeelte
+(in hoofdletters) van de naam afgedrukt.
+Vb. KONING (de)
+/////////////////////////////////////////////////////////////////
+

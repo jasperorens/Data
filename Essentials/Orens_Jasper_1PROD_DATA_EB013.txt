@@ -1,0 +1,71 @@
+1. select m.naam, m.voorn, i.cursus, m.gbdatum, i.begindatum, ROUND(m.maandsal,2) as "MAANDSALARIS 1000-TAL", c.omschrijving
+from medewerkers m
+join inschrijvingen i
+on m.mnr = i.cursist
+join cursussen c
+on c.code = i.cursus
+where to_char(m.gbdatum, 'MONTH') in (to_char(i.begindatum, 'MONTH'))
+/
+
+
+2.select
+MNR, Naam, maandsal, comm,
+DECODE(maandsal + NVL(comm, 0)) * 12,
+'> 50000', ' > 50.000'
+BETWEEN '3000 and 5000, '30.000 - 50.000'
+'> 30000', '<30.000')
+from medewerkers
+/
+
+3. select 'Cursus - ' || u.cursus as "Cursus (k.o.)"
+from uitvoeringen u
+join afdelingen a
+on u.locatie = a.locatie
+where A.naam in ('VERKOOP', 'OPLEIDINGEN')
+/
+
+4. select 
+substr(voorn, 1, 1) || '. ' || naam as "Naam Docent", 
+4 as "Aantal"
+from medewerkers 
+where mnr in (select docent from uitvoeringen)
+/
+
+5. select m.naam, m.voorn, a.locatie, to_char(m.gbdatum,'day') as "Day"
+from medewerkers m
+join afdelingen a
+on m.afd = a.anr
+where m.voorn like '%A%' and m.naam like '%S'
+order by to_char(m.gbdatum, 'day')
+/
+
+6. select initcap(m.voorn) || ' ' || initcap(m.naam) as "Volledige Naam",
+m.maandsal as "Maand Salaris", s.toelage as “Toelage”
+from medewerkers m
+join schalen s
+on m.maandsal between s.ondergrens and s.bovengrens
+where maandsal > 500 + (select avg(maandsal) from medewerkers)
+/
+
+7. insert into CURSUSSEN
+(code, omschrijving, type, lengte)
+values
+('COM', 'Communicatietechnieken', 'ALG', 2)
+/
+
+insert into UITVOERINGEN
+(cursus, begindatum, locatie)
+values
+('COM', DATE'2023-09-01', 'MAASTRICHT')
+/
+
+Commit
+/
+
+8. UPDATE UITVOERINGEN
+SET locatie = 'TONGEREN', begindatum = date'2023-09-01'
+WHERE cursus = 'COM'
+/
+
+Rollback
+/

@@ -1,0 +1,111 @@
+lVoordelen aan data opslaan op database t.o.v. #C 
+
+1. het staat op een server, deze draaien op verschillende besturingssytemen (Linux, Server, OpenBSD, FreeBSD)
+
+Er is Security: alles is encrypted
+SQL, rationeel model. is gemakkelijker om data op te vragen.
+
+minimale voorwaarden om te spreken van een DB
+CRUD
+Create
+Read
+Update
+Delete
+
+-----log in-----
+jasper
+pxl
+
+----alles selecteren van een tabel-----
+SQL> select * from medewerkers;
+SQL> select * from tab;
+
+----scherm opruimen-------
+SQL> clear screen
+
+----gebruik maken van buffer-----
+SQL> eit (deze gaat naar kladblok, hier kan je het vorige comando aanpassen, dan moet je het bestand opslaan)
+hierna moet je "SQL>run " typen
+
+----comando opslaan als script----
+SQL> save name.sql
+
+----comando opslaan als script, iets toevoegen----- (dit dient voor meerdere comandos toe te voegen
+SQL> save name.sql append
+
+---script runnen----
+SQL> start name.sql
+
+---unieke waarden----
+SQL> select distinct anr from afdelingen;
+
+-----voorwaarden----- (where)
+SQL> select distinct afd from medewerkers where afd >10;
+SQL> select voorn, naam from medewerekers where functie = 'TRAINER';
+
+-----alias aanmaken-----(as)
+SQL>SELECT naam, 12*maandsal AS jaarsalaris FROM medewerkers; (12 x maandsalaris word opgeslagen als jaarsalaris)
+
+-----toon datum van vandaag----
+SQL> select sysdate from dual;
+
+----hoe een NOT gebruiken------
+SQL> select * from medewerkers where afd !=30;
+SQL> select * from medewerkers where not afd =30;
+
+----hoe een < of > gebruiken----
+----(tip als je tabel naam niet kent, zoek hem op-----
+SQL> select * from medewerkers where gbdatum > '01-04-1989';
+SQL> select voorn, functie from medewerkers where afd >=20 and afd <=30;
+
+
+---- hoe een between gebruiken-----
+SQL> select voorn, functie from medewerkers where afd BETWEEN 20 and 30;
+
+-----Like operator, alle medewerkers in weins naam een A voorkomt--------
+SQL> select voorn, naam from medewerkers where naam LIKE '%A%'; (maakt niet uit waar de A zit)
+SQL> select voorn, naam from medewerkers where naam LIKE '_A%'; (enkel het 2de character)
+SQL> select voorn, naam from medewerkers where naam LIKE '__A%'; (enkel het 3de character)
+SQL> select voorn, naam from medewerkers where naam LIKE '%A'; (enkel het laatste character)
+SQL> select voorn, naam from medewerkers where naam LIKE 'A_'; (enkel het 1ste character is A maar er is max 1 letter na de A)
+SQL> select voorn, naam from medewerkers where naam LIKE '% %'; (enkel naam met spatie in)
+
+
+----in volgorde zetten van klein naar groot----
+Select * from medewerkers order by mnr ASC; (of DESC, voor omgekeerd)
+
+NVL
+NVL(com, 0); (wanneer commisie gelijk is aan 0 word deze verangen door getal 0)
+
+------vierkantswortel-------
+SQRT(16) = 4
+
+----machtkrachtne------
+POWER(2, 3) = 8
+
+----uppercase----lowercase-----
+upper('jacobs') = 'JACOBS'
+lower('JACOBS') = 'jacbos'
+initcap('jean-marie') = 'Jean-Marie'
+
+---afronding------
+select round (345.678), dit word 346
+select ceil (345.23), dit word 346
+select floor(345.76) dit word 345
+select round (345.678, 2) from dual; dit word 345,68
+select round(345.678, -1) from dual; dit word 350 (tientallen)
+
+
+---afkapping------
+slect trunc (345.678, 2) from dual; deze kapt gewoon 2 cijfers na de comma af
+select ABS(-123) from dual; dit maakt positieve waarden
+select sign(-13) sign from dual; geeft het resultaat + of -
+
+
+
+
+
+
+
+
+

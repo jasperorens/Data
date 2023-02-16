@@ -1,0 +1,23 @@
+normalisatie van database is voor 50%
+structuren op leggen
+sequencies op maken
+waar formules achter steken
+
+
+process gegevens zijn gegevens die bekomen zijn door een process.
+zoals bijvoorbeeld een totaalprijs, deze is berekend op voorgaande
+prijs gegevens. dit moet dus gewist worden bij een normalisatie .
+
+BTW (berekening) mag ook geschraft worden, maar er moet wel ergens
+in staan hoeveel percentage BTW op de artiekelen staan.
+
+
+Idintify framework
+
+in C# class omzetten naar taballen
+
+
+process gegevens kunnen geautomatisseerd worden.
+Dit zou met een sugestie an een tabel moeten werken waarmee de user
+dan akkoord of niet akkoord moet gaan. Dit omdat een programma
+niet kan onderscheiden wat process gegvens zijn.

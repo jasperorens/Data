@@ -1,0 +1,84 @@
+
+
+ABS (vergelijken)-----
+
+
+
+INSTR(XX, 'X', 1)    
+(zoek tabel, letter, op positie)
+
+RPAD('XX(XX),') as XXX
+
+LTRIM(xx, 'xx') / RTRIM (xx, 'xx')
+
+ROUND()
+TRUNC()
+
+
+INITCAP(x)
+UPPER(x)
+LOWER(x)
+
+
+
+
+
+
+DECODE
+
+DISTINCT
+
+INPUT
+
+LIKE % _
+
+BETWEEN 2000 AND 4000
+
+IN (2000, 3000)
+
+NULLIF
+
+
+
+
+col histogram format a25;
+//maak een colom die histogram noemt, maak deze 25 chars lang
+
+CONCAT('x', x)
+voeg ('iets', toe aan dit)
+
+TRANSLATE(xx, 'XXxx#', 'XXxx-')
+vervang(in tabel, 'DITdit#', 'METmet-')
+
+X UNION X
+colum + colum
+
+X MINUS X
+colum 1 - wat er in colum 2 zit
+
+select substr(naam, instr(naam,'')+1) || '(' || lower(substr(naam, 1, instr(naam,'')-1)) || ')'
+
+length(XX) as lengte
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+col “Beginletter” format a25;
+col “Hoofdletters” format a25;
+col “Kleine letters” format a25;
+
+select distinct initcap(functie) as “Beginletter”,
+upper(functie) “Hoofdletters”,
+lower(functie) “Kleine letters”
+from medewerkers;

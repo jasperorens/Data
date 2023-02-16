@@ -1,0 +1,97 @@
+Geef een lijst van de medewerkers waarbij de kolommen NAAM, FUNCTIE en OVERZICHT worden afgedrukt. In de kolom overzicht wordt voor een trainer zijn/haar salaris afgedrukt.
+Voor een verkoper wordt zijn/haar commisie afgedrukt en in alle andere gevallen drukt men 'onbelangrijk' af.
+select naam, functie, 
+case functie
+when 'TRAINER' tehn to_char(maandsal)
+when 'VERKOPER' then to_char(comm)
+else 'onbelangrijk'
+end as overzicht
+from medewerkers;
+
+
+
+
+EXTRACT IS EXAMEN VRAAGbij extract is de 09 = getallen van 0 tot en met 9
+
+
+select naam, TO_CHAR(gbdatum, '"The" Ddsp "of" fmMonth Yyyysp') "GEBOORTEDATUM"
+from medewerkers 
+where functie = 'TRAINER';
+
+"The" is in acolades omdat heel de zin al binnen enkele acolades is
+de eerste letter van Ddsp en fmMonth zijn hoofdletter om de maand ect in hoofdletter te zetten.
+Dd = dag, Yyyy = jaar, de 'sp' staat voor uitspellen. de 'fm' staat voor extra spacies wegnemen
+
+
+primary key verwijst naar unieke id binnen de tabel
+foreign key verwijst naar unieke id buiten de tabel
+
+
+
+film boeken via groupon
+daisy, ayden veranderen
+
+
+
+
+
+
+
+3) Geef de namen van de medewerkers die in dezelfde afdeling werken als wouters.
+
+Eerste manier: subquery
+
+select naam
+from medewerkers
+where afd = 
+( select afd
+from medewerkers
+where naam = 'Wouters')
+and naam != 'WOUTERS';
+
+Tweede manier: join
+
+select m.naam
+from medewerkers m
+join medewerkers w
+on m.afd = w.afd
+where w.naam = 'WOUTERS' and m.naam !='WOUTERS';
+
+
+
+
+
+6) Geef van elke medewerker het medewerkersnummer en de naam van de afdeling waarvoor hij of zij werkt
+en maak een overzicht per afdeling mogelijk.
+
+
+
+
+voer eerst dit:
+
+break on afdeling skip 1;        ((((clear breaks)))))))
+
+select a.naam as afdelingen, m.mnr || ' ' || m.voorn || ' ' || m.naam
+from medewerkers m
+join afdelingen a
+on M.afd = a.anr;
+
+
+10) geef de naam en voornaam van de medewerkers die een cursus volgen waar een bedrijfsafdeling gevestigd is.
+
+
+select m.naam, m.voorn, u.locatie
+from medewerkers m
+join inshrijvingen i
+on m.mnr = i.cursist
+join uitvoeringen u
+on i.cursus = u.cursus and i.begindatum = ubegindatum
+
+where u.locatie in (select locatie from afdelingen);
+
+
+
+
+
+
+
